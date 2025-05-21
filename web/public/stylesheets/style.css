@@ -1,0 +1,108 @@
+
+
+body {
+  font: 15px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  align-items: center;
+  background: #E4FFCF;
+  margin: 0;
+}
+
+p {
+  color: #5C3935;
+    font-size: 35px;
+    font-family: Draftside;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0.5px;
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+h1{
+  color: #5C3935;
+    font-size: 72px;
+    font-family: Draftside;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.divMLG{
+  padding: 15px;
+  margin-bottom: 300px;
+  width: 896px;
+  height: 210px;
+  position:relative;
+  background: #BBDEA8;
+  border-radius: 40px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.divB1{
+  width: 300px; 
+  height: 50px;
+  display: flex;
+  padding-left: 9px; 
+  padding-right: 9px; 
+  padding-top: 18px; 
+  padding-bottom: 18px; 
+  background: #51332F; 
+  border-radius: 40px; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 10px; 
+  display: inline-flex;
+  margin: 10px;
+}
+
+.divB2{
+  width: 300px; 
+  height: 50px; 
+  display: flex;
+  padding-left: 9px; 
+  padding-right: 9px; 
+  padding-top: 18px; 
+  padding-bottom: 18px; 
+  background: #E4FFCF; 
+  border-radius: 40px; 
+  outline: 3px #51332F solid; 
+  outline-offset: -3px; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 10px; 
+  display: inline-flex;
+  margin: 10px;
+}
+
+.button-container{
+  margin-top: -250px;
+  display: flex;
+  gap: 250px;
+}
+
+.p1{
+    font-size: 18px;
+    font-family: SF Pro;
+    font-weight: 590;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    word-wrap: break-word;
+}
+ .p2{
+  color: #51332F;
+  font-size: 18px;
+  font-family: SF Pro;
+  font-weight: 590;
+  line-height: 18px;
+  word-wrap: break-word
+ }
