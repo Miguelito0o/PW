@@ -1,3 +1,3 @@
-# _My Little Garden_
+# _My Little Garden_ 🪴
 _`Projeto Final Programação Web I`_ </br>
 
