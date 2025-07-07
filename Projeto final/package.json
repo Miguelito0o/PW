@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/Miguelito0o/PW_2025.1#readme",
   "dependencies": {
+    "dotenv": "^17.0.1",
     "express": "^5.1.0",
-    "express-generator": "^4.16.1"
+    "express-generator": "^4.16.1",
+    "mongoose": "^8.16.1"
   }
 }
