@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/stylesheets/style.css">
+    </head>  
+    <body>
+        
+        <main>
+            <div class="divMLG">
+                <h1>My Little Garden</h1>
+                <p>Cultive plantas no seu próprio jardim digital</p>
+            </div>
+            <div class="button-container">
+                <div class="divB1" onclick="window.location.href='/Login'">
+                    <p class="p1">
+                     Meus jardins
+                    </p>
+                </div>
+                <div class="divB2" onclick="window.location.href='/signin'">
+                    <p class="p2">
+                        Primeiro cultivo
+                    </p>
+                </div>
+            </div>
+        </main>
+        <footer>
+        </footer>
+    </body>
 </html>
