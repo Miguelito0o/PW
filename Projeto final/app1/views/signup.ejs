@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> BUCETA</title>
+    <title>Cadastro</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body>
-    <h1>indigena ou not indigena thats the question</h1>
-    <p>Welcome to my bucetya</p>
+  <body class="login-page">
+    <div class="container-login">
+      <h1>My Little Garden</h1>
+      <p>crie sua conta</p>
+      <form action="/signup" method="POST">
+        <input type="text" name="username" placeholder="Usuário" required>
+        <input type="password" name="password" placeholder="Senha" required>
+        <input type="password" name="confirmPassword" placeholder="Confirme a senha" required>
+        <button type="submit"><h1>Cadastrar</h1></button>
+      </form>
+    </div>
   </body>
 </html>

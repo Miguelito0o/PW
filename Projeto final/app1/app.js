@@ -1,3 +1,9 @@
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/myLittleGarden')
+  .then(() => console.log('✅ Conectado ao MongoDB'))
+  .catch(err => console.error('❌ Erro ao conectar ao MongoDB:', err));
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -13,6 +19,8 @@ var signupRouter = require('./routes/signup');
 var configRouter = require('./routes/configuracoes');
 var catalogoRouter = require('./routes/catalogo');
 var app = express();
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

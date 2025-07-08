@@ -28,7 +28,7 @@ router.post('/', async function(req, res) {
 
     const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: '1h' });
 
-    res.json({ message: 'Login bem-sucedido', token });
+    res.redirect('/home');
   } catch (err) {
     res.status(500).json({ message: 'Erro no servidor', error: err.message });
   }

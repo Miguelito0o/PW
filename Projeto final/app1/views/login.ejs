@@ -4,8 +4,15 @@
     <title>Login</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body>
-    <h1>teste login</h1>
-    <p>testetesteteste</p>
+  <body class="login-page">
+    <div class="container-login">
+      <h1>My Little Garden</h1>
+      <p>entre na sua conta</p>
+      <form action="/login" method="POST">
+        <input type="text" name="username" placeholder="Usuário" required>
+        <input type="password" name="password" placeholder="Senha" required>
+        <button type="submit"><h1>Login</h1></button>
+      </form>
+    </div>
   </body>
 </html>
