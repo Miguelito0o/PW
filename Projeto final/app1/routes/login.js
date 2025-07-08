@@ -6,6 +6,10 @@ const jwt = require('jsonwebtoken');
 
 const SECRET = process.env.JWT_SECRET || 'seuSegredoSuperSeguro';
 
+router.get('/', (req, res) => {
+  res.render('login');
+});
+
 router.post('/', async function(req, res) {
   const { username, password } = req.body;
 
