@@ -1,16 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User'); // modelo do usuário
+const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const SECRET = process.env.JWT_SECRET || 'seuSegredoSuperSeguro';
 
+// 👤 Tela de login
 router.get('/', (req, res) => {
-  res.render('login');
+  res.render('login'); // renderiza a view de login
 });
 
-router.post('/', async function(req, res) {
+// 🔐 Processa o login
+router.post('/', async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -28,8 +30,18 @@ router.post('/', async function(req, res) {
 
     const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: '1h' });
 
-    res.redirect('/home');
+    // 🍪 Armazena o token no cookie
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: false,     // Use true se estiver com HTTPS
+      maxAge: 3600000    // 1 hora
+    });
+
+    // 🚪 Redireciona para a rota protegida
+    res.redirect('/criarJardim');
+
   } catch (err) {
+    console.error('Erro no login:', err.message);
     res.status(500).json({ message: 'Erro no servidor', error: err.message });
   }
 });

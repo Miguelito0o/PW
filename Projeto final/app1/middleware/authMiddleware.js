@@ -3,8 +3,9 @@ const jwt = require('jsonwebtoken');
 const SECRET = process.env.JWT_SECRET || 'seuSegredoSuperSeguro';
 
 function authenticateToken(req, res, next) {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // Formato: "Bearer <token>"
+  const token = req.cookies.token || (
+  req.headers['authorization'] && req.headers['authorization'].split(' ')[1]
+  );
 
   if (!token) return res.status(401).json({ message: 'Token não fornecido' });
 

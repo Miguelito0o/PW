@@ -1,60 +1,84 @@
+const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const createError = require('http-errors');
 
-mongoose.connect('mongodb://localhost:27017/myLittleGarden')
-  .then(() => console.log('✅ Conectado ao MongoDB'))
+// Middleware de autenticação
+const authenticateToken = require('./middleware/authMiddleware');
+
+// Rotas
+const indexRouter     = require('./routes/index');       // Página principal
+const loginRouter     = require('./routes/login');       // Login
+const signupRouter    = require('./routes/signup');      // Cadastro
+const usersRouter     = require('./routes/users');
+const criarJRouter    = require('./routes/criarJardim');
+const homeRouter      = require('./routes/home');
+const lojaRouter      = require('./routes/loja');
+const configRouter    = require('./routes/configuracoes');
+const catalogoRouter  = require('./routes/catalogo');
+const novoJRouter     = require('./routes/novoJardim');
+
+// App
+const app = express();
+
+// ✅ Conexão com MongoDB
+mongoose.connect('mongodb://localhost:27017/myLittleGarden', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log('✅ Conectado ao MongoDB'))
   .catch(err => console.error('❌ Erro ao conectar ao MongoDB:', err));
 
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var homeRouter = require('./routes/home');
-var loginRouter = require('./routes/login');
-var lojaRouter = require('./routes/loja');
-var signupRouter = require('./routes/signup');
-var configRouter = require('./routes/configuracoes');
-var catalogoRouter = require('./routes/catalogo');
-var app = express();
-
-
-
-// view engine setup
+// 🔧 Configurações do Express
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// 🔐 Middleware condicional (protege todas as rotas, exceto públicas)
+app.use((req, res, next) => {
+  const rotasPublicas = ['/', '/login', '/signup'];
+
+  const rotaLiberada = rotasPublicas.some((publica) => req.path.startsWith(publica));
+
+  if (rotaLiberada) {
+    return next(); // rota pública
+  }
+
+  return authenticateToken(req, res, next); // rota protegida
+});
+
+
+// 🌐 Rotas públicas
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
+
+// 🌐 Rotas protegidas
+app.use('/users', usersRouter);
+app.use('/criarJardim', criarJRouter);
 app.use('/api', homeRouter);
 app.use('/api', lojaRouter);
 app.use('/api', configRouter);
 app.use('/api', catalogoRouter);
+app.use('/api', novoJRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
+// 🔎 404
+app.use((req, res, next) => {
   next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+// ❌ Tratamento de erro
+app.use((err, req, res, next) => {
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
+  res.locals.error   = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500);
   res.render('error');
 });
 
+// 🚀 Exporta o app
 module.exports = app;

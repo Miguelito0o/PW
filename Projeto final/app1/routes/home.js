@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const authenticateToken = require('../middleware/signmidlleware');
+const authenticateToken = require('../middleware/authMiddleware');
 
 router.get('/home', authenticateToken, (req, res) => {
   res.json({
