@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const Garden = require('../models/Garden'); // ← Importa o modelo de jardim
+
 
 const SECRET = process.env.JWT_SECRET || 'seuSegredoSuperSeguro';
 
@@ -29,16 +31,21 @@ router.post('/', async (req, res) => {
     }
 
     const token = jwt.sign({ id: user._id }, SECRET, { expiresIn: '1h' });
-
-    // 🍪 Armazena o token no cookie
     res.cookie('token', token, {
       httpOnly: true,
-      secure: false,     // Use true se estiver com HTTPS
-      maxAge: 3600000    // 1 hora
+      secure: false,
+      maxAge: 3600000
     });
 
-    // 🚪 Redireciona para a rota protegida
-    res.redirect('/criarJardim');
+// 🌱 Verifica se o usuário já tem jardim
+    const jardins = await Garden.find({ dono: user._id });
+
+    if (jardins.length === 0) {
+      res.redirect('/criarJardim');
+    } else {
+      res.redirect('/api/home');
+    } 
+
 
   } catch (err) {
     console.error('Erro no login:', err.message);

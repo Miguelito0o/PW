@@ -1,3 +1,19 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Criar Novo Jardim</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1>Criar Novo Jardim</h1>
+    <form action="/api/novoJardim" method="POST">
+      <label for="nome">Nome do Jardim:</label>
+      <input type="text" id="nome" name="nome" required placeholder="Meu Jardim Encantado">
+      
+      <button type="submit" class="botao-acao">Criar</button>
+    </form>
+  </div>
+</body>
+</html>

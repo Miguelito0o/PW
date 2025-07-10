@@ -29,8 +29,7 @@ router.post('/', async function(req, res) {
     const newUser = new User({ username, password: hashedPassword });
     await newUser.save();
 
-    res.status(201).json({ message: 'Usuário criado com sucesso' })
-    res.redirect('/home');
+    res.redirect('/criarJardim');
   } catch (err) {
     res.status(500).json({ message: 'Erro ao criar usuário', error: err.message });
   }
