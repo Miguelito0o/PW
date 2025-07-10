@@ -1,12 +1,21 @@
 <!DOCTYPE html>
+
 <html>
+<%- include('partials/header'); %>
   <head>
-    <title>Home
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Home</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
   </head>
-  <body>
-    <h1>Bem-vindo ao seu jardim!</h1>
-<p>Você tem <%= jardins.length %> jardim(ns).</p>
+  <body> 
+
+    <h2>Seu Jardim: <%= jardins[0].nome %></h2>
+<div class="jardim">
+  <% jardins[0].vasos.forEach((vaso, index) => { %>
+    <div class="vaso">
+    </div>
+  <% }) %>
+</div>
+
   </body>
+<%- include('partials/footer'); %>
 </html>

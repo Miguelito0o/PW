@@ -9,6 +9,40 @@
   --marrom3: #1F1312;
 }
 
+/* Navigation */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li a {
+  color: var(--marrom);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: var(--bege);
+  color: var(--dourado);
+}
+
+/* footer */
+
+footer {
+  background-color: var(--marrom);
+  color: var(--bege);
+  text-align: center;
+  padding: 1.5rem;
+}
+
+/*  */
+
 body {
   background-color: var(--background);
   padding: 50px;
@@ -271,3 +305,15 @@ a {
   background-color: var(--verde3);
 }
 
+/* Jardim */
+
+.jardim {
+  display: flex;
+  gap: 1rem;
+}
+.vaso {
+  border: 2px solid #1F1312;
+  padding: 1rem;
+  background-color: #f1fff1;
+  width: 150px;
+}

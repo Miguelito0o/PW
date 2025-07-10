@@ -7,9 +7,6 @@ router.get('/home', authenticateToken, async (req, res) => {
   try {
     const jardins = await Garden.find({ dono: req.user.id });
 
-    // 🌱 Log para debug (opcional)
-    console.log(`Usuário ${req.user.id} tem ${jardins.length} jardim(ns).`);
-
     res.render('home', {
       usuarioId: req.user.id,
       jardins
