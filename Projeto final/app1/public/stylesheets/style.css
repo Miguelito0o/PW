@@ -9,7 +9,36 @@
   --marrom3: #1F1312;
 }
 
-/* Navigation */
+header {
+  background-color: var(--branco);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.logo h1 {
+  color: var(--dourado);
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.logo span {
+  color: var(--verde);
+}
+
+/* Navegação */
 nav ul {
   list-style: none;
   display: flex;
@@ -47,13 +76,15 @@ body {
   background-color: var(--background);
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
+  width: 100%;
 }
 
 h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
   }
-  p {
+p {
     font-size: 1.2rem;
     color: #555;
   }
@@ -61,6 +92,7 @@ a {
   color: #00B7FF;
 }
    /*Containers*/
+
     .top-container {
       position: fixed;
       top: 0;
@@ -308,8 +340,10 @@ a {
 /* Jardim */
 
 .jardim {
-  display: flex;
+  display: fixed;
   gap: 1rem;
+  height: 100%;
+  width: 100%;
 }
 .vaso {
   border: 2px solid #1F1312;

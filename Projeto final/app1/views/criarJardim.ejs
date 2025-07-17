@@ -4,16 +4,49 @@
   <meta charset="UTF-8">
   <title>Criação de Jardim</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
+  <style>
+    /* Faz o body ocupar 100% da altura da tela e centraliza com flexbox */
+    
+
+    .form-container {
+    flex: 1;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .botao-acao {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .botao-acao:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-  <div class="form-container">
-    <h1>Crie seu Jardim</h1>
-    <form action="/criarJardim" method="POST">
-      <label for="nome">Nome do Jardim:</label>
-      <input type="text" id="nome" name="nome" required placeholder="Meu Jardim Verde">
+    <div class="form-container">
+      <h1>Crie seu Jardim</h1>
+      <form action="/criarJardim" method="POST">
+        <label for="nome">Nome do Jardim:</label>
+        <input type="text" id="nome" name="nome" required placeholder="Meu Jardim Verde">
 
-      <button type="submit" class="botao-acao">Criar Jardim</button>
-    </form>
-  </div>
+        <button type="submit" class="botao-acao">Criar Jardim</button>
+      </form>
+    </div>
 </body>
 </html>
