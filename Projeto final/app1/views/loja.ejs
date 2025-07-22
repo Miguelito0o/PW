@@ -5,7 +5,25 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h2>🌼 Loja de Plantas</h2>
+    <p>Você já possui um Girassol no seu jardim 🌻</p>
+
+    <div class="catalogo">
+      <% plantas.forEach(planta => {
+        if (planta.nome !== 'Girassol') { %>
+          <div class="card-planta">
+            <img src="/images/plantas/<%= planta.imagem %>" alt="<%= planta.nome %>">
+            <h3><%= planta.nome %></h3>
+            <p><%= planta.descricao %></p>
+            <p>Produção: <%= planta.oxigeniopm %> ppm</p>
+            <p>Preço: <%= planta.preco %> ppm</p>
+            <form action="/api/comprar" method="POST">
+              <input type="hidden" name="plantaId" value="<%= planta._id %>">
+              <button type="submit">Comprar</button>
+            </form>
+          </div>
+      <% } }) %>
+    </div>
+
   </body>
 </html>

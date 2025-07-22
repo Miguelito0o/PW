@@ -19,10 +19,44 @@
   </head>
   <body> 
     <h2>Seu Jardim: <%= jardins[0].nome %></h2>
+    <div class="top-container">
+    <h1>🌻 Bem-vindo ao seu Jardim</h1>
+    <p>Oxigênio disponível: <strong><%= oxigenioTotal %> ppm</strong></p>
+    </div>
+
     <div class="jardim">
       <% jardins[0].vasos.forEach((vaso, index) => { %>
-        <div class="vaso">
-        </div>
+      <div class="vaso">
+        <% if (vaso.planta) { %>
+          <img src="/images/plantas/<%= vaso.planta %>.png" alt="<%= vaso.planta %>">
+          <h3><%= vaso.planta %></h3>
+          <p>Plantada em: <%= new Date(vaso.dataPlantio).toLocaleDateString() %></p>
+        <% } else { %>
+          <p>🌱 Vaso vazio</p>
+          <form action="/api/plantar" method="POST">
+            <input type="hidden" name="vasoIndex" value="<%= index %>">
+            <select name="plantaNome">
+              <% inventario.forEach(item => { %>
+                <option value="<%= item.planta.nome %>"><%= item.planta.nome %> (x<%= item.quantidade %>)</option>
+              <% }) %>
+            </select>
+            <button type="submit" class="garden-button">Plantar</button>
+          </form>
+        <% } %>
+      </div>
+
+        <% if (!vaso.planta) { %>
+          <form action="/api/plantar" method="POST">
+            <input type="hidden" name="vasoIndex" value="<%= index %>">
+            <select name="plantaNome">
+              <% inventario.forEach(item => { %>
+                <option value="<%= item.planta.nome %>"><%= item.planta.nome %></option>
+              <% }) %>
+            </select>
+            <button type="submit">Plantar</button>
+          </form>
+        <% } %>
+
       <% }) %>
     </div>
 
