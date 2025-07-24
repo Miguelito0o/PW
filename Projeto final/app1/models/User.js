@@ -9,7 +9,11 @@ const userSchema = new mongoose.Schema({
       quantidade: Number,
   }
   ],
-  oxigenioTotal: { type: Number, default: 0 }
+  oxigenioTotal: { type: Number, default: 0 },
+  dataUltimaColeta: {
+    type: Date,
+    default: Date.now
+  }  
 });
 
 module.exports = mongoose.model('User', userSchema);
