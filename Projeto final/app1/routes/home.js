@@ -31,4 +31,37 @@ router.get('/home', authenticateToken, async (req, res) => {
   }
 });
 
+router.post('/plantar', authenticateToken, async (req, res) => {
+  const { vasoIndex, plantaNome } = req.body;
+
+  try {
+    const user = await User.findById(req.user.id).populate('inventario.planta');
+    const jardim = await Garden.findOne({ dono: req.user.id });
+
+    if (!jardim || !jardim.vasos[vasoIndex]) {
+      return res.status(404).send('Vaso não encontrado.');
+    }
+
+    const item = user.inventario.find(i => i.planta.nome === plantaNome);
+
+    if (!item || item.quantidade <= 0) {
+      return res.status(400).send('Planta não disponível no inventário.');
+    }
+
+    // 🌱 Plantar
+    jardim.vasos[vasoIndex].planta = plantaNome;
+    jardim.vasos[vasoIndex].dataPlantio = new Date();
+    item.quantidade -= 1;
+
+    await jardim.save();
+    await user.save();
+
+    res.redirect('/api/home'); // Volta pra tela do jardim
+  } catch (err) {
+    console.error('Erro ao plantar:', err.message);
+    res.status(500).send('Erro interno ao plantar.');
+  }
+});
+
+
 module.exports = router;

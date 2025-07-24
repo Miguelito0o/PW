@@ -9,25 +9,25 @@ mongoose.connect('mongodb://localhost:27017/myLittleGarden', {
 
 const novasPlantas = [
   {
-    nome: 'Cacto Solar',
+    nome: 'cacto',
     imagem: 'cacto.png',
     descricao: 'Sobrevive em calor intenso e gera oxigênio rápido.',
     oxigeniopm: 3,
-    preco: 25
+    preco: 90
   },
   {
     nome: 'Bonsai Zen',
     imagem: 'bonsai.png',
     descricao: 'Planta meditativa de crescimento lento, mas poderosa.',
     oxigeniopm: 7,
-    preco: 90
+    preco: 320
   },
   {
     nome: 'Samambaia Alegre',
     imagem: 'samambaia.png',
     descricao: 'Verde vibrante e alegre, ideal para todos os vasos.',
     oxigeniopm: 1,
-    preco: 20
+    preco: 65
   }
 ];
 

@@ -9,9 +9,9 @@ const createError = require('http-errors');
 const authenticateToken = require('./middleware/authMiddleware');
 
 // Rotas
-const indexRouter     = require('./routes/index');       // Página principal
-const loginRouter     = require('./routes/login');       // Login
-const signupRouter    = require('./routes/signup');      // Cadastro
+const indexRouter     = require('./routes/index');
+const loginRouter     = require('./routes/login');
+const signupRouter    = require('./routes/signup');
 const usersRouter     = require('./routes/users');
 const criarJRouter    = require('./routes/criarJardim');
 const homeRouter      = require('./routes/home');
