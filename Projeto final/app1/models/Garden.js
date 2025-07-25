@@ -5,7 +5,11 @@ const gardenSchema = new mongoose.Schema({
   dono: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   vasos: [
     {
-      planta: { type: String, default: null },
+      planta: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Planta',
+        default: null
+      },
       dataPlantio: { type: Date, default: null },
       estado: { type: String, default: 'vazio' } // ex: 'plantado', 'crescendo'
     }

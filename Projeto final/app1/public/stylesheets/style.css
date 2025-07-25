@@ -94,7 +94,6 @@ footer {
 
 body {
   background-color: var(--background);
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   height: 100%;
   width: 100%;
@@ -112,6 +111,15 @@ a {
   color: #00B7FF;
 }
    /*Containers*/
+
+   .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  }
+
 
    .top-container {
     position: fixed;

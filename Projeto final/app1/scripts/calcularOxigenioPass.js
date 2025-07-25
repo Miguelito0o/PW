@@ -3,7 +3,7 @@ function calcularOxigenioPassivo(jardim, plantasDB, ultimaColeta) {
   
     jardim.vasos.forEach(vaso => {
       if (vaso.planta && vaso.dataPlantio) {
-        const plantaInfo = plantasDB.find(p => p.nome === vaso.planta);
+        const plantaInfo = plantasDB.find(p => p.nome === vaso.planta.nome);
         if (!plantaInfo) return;
   
         // ⏳ Começa a contar do maior entre plantio e última coleta

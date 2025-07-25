@@ -1,103 +1,83 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Meu Jardim</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <style>
-    .botao-loja {
-      display: inline-block;
-      padding: 10px 20px;
-      background-color: #47a447;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-      margin-bottom: 15px;
-    }
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Meu Jardim</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
 
-    .botao-loja:hover {
-      background-color: #398439;
-    }
-  </style>
+</head>
+<body>
 
-  </head>
-  <body>
-    <!-- 🌞 Topo da página -->
-    <div class="top-container">
-      <h1>🌻 Seu Jardim: <%= jardins[0].nome %></h1>
-      <p>Oxigênio disponível: <strong><%= oxigenioTotal %></strong></p>
-    </div>
+  <!-- 🌿 Header parcial -->
+  <%- include('partials/header', { jardim: jardins[0], oxigenioTotal: oxigenioTotal }) %>
 
-    <!-- 🪴 Área dos vasos -->
-    <div class="jardim-container">
-      <% jardins[0].vasos.forEach((vaso, index) => { %>
-        <div class="vaso">
-          <% if (vaso.planta) { %>
-            <img src="../images/plantas/<%= vaso.planta.imagem %>" alt="<%= vaso.planta.nome %>">
-            <h3><%= vaso.planta.nome %></h3>
-            <p><%= new Date(vaso.dataPlantio).toLocaleDateString() %></p>
-          <% } else { %>
-            <form>
-              <button type="button" class="garden-button" data-vaso-index="<%= index %>">
-                <img src="../images/icones/pa.png" class="pa">
-              </button>
-            </form>
-            <img src="../images/icones/vaso.png" alt="Vaso vazio">
-          <% } %>
-        </div>
-      <% }) %>
-    </div>
-
-    <a href="/api/loja" class="botao-loja">🛒 Ir para Loja</a>
-
-    <!-- 🌿 Modal do Inventário -->
-    <div id="plantModal" class="modal" style="display: none;">
-      <div class="modal-content">
-        <h2>Escolha a planta 🌱</h2>
-        <form id="plantForm" action="/api/plantar" method="POST">
-          <input type="hidden" name="vasoIndex" id="vasoIndexInput">
-          <ul>
-            <% inventario.forEach(item => { %>
-              <li>
-                <label>
-                  <input type="radio" name="plantaNome" value="<%= item.planta.nome %>" required>
-                  <%= item.planta.nome %> (x<%= item.quantidade %>)
-                </label>
-              </li>
-            <% }) %>
-          </ul>
-          <button type="submit">🌼 Plantar</button>
-          <button type="button" onclick="fecharModal()">Cancelar</button>
-        </form>
+  <!-- 🪴 Vasos renderizados -->
+  <main class="jardim-container">
+    <% jardins[0].vasos.forEach((vaso, index) => { %>
+      <div class="vaso">
+        <% if (vaso.planta) { %>
+          <img src="/images/plantas/<%= vaso.planta.imagem %>" alt="<%= vaso.planta.nome %>">
+          <h3><%= vaso.planta.nome %></h3>
+          <p><%= new Date(vaso.dataPlantio).toLocaleDateString() %></p>
+        <% } else { %>
+          <form>
+            <button type="button" class="garden-button" data-vaso-index="<%= index %>">
+              <img src="/images/icones/pa.png" class="pa" alt="Plantar">
+            </button>
+          </form>
+          <img src="/images/icones/vaso.png" alt="Vaso vazio">
+        <% } %>
       </div>
+    <% }) %>
+  </main>
+
+  <!-- 🌿 Modal de inventário -->
+  <div id="plantModal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h2>Escolha a planta 🌱</h2>
+      <form id="plantForm" action="/api/plantar" method="POST">
+        <input type="hidden" name="vasoIndex" id="vasoIndexInput">
+        <ul style="text-align: left;">
+          <% inventario.forEach(item => { %>
+            <li>
+              <label>
+                <input type="radio" name="plantaNome" value="<%= item.planta.nome %>" required>
+                <%= item.planta.nome %> (x<%= item.quantidade %>)
+              </label>
+            </li>
+          <% }) %>
+        </ul>
+        <button type="submit">🌼 Plantar</button>
+        <button type="button" onclick="fecharModal()">Cancelar</button>
+      </form>
     </div>
+  </div>
 
-    <!-- 🧠 Script da Animação + Modal -->
-    <script>
-      const modal = document.getElementById('plantModal');
-      const vasoIndexInput = document.getElementById('vasoIndexInput');
+  <!-- 🧠 Script da pá + modal -->
+  <script>
+    const modal = document.getElementById('plantModal');
+    const vasoIndexInput = document.getElementById('vasoIndexInput');
 
-      document.querySelectorAll('.garden-button').forEach(botao => {
-        botao.addEventListener('click', e => {
-          e.preventDefault();
-          const imgPa = botao.querySelector('.pa');
-          if (imgPa) {
-            imgPa.classList.add('animar');
-            setTimeout(() => imgPa.classList.remove('animar'), 600);
-          }
-          const index = botao.getAttribute('data-vaso-index');
-          vasoIndexInput.value = index;
-          modal.style.display = 'flex';
-        });
+    document.querySelectorAll('.garden-button').forEach(botao => {
+      botao.addEventListener('click', e => {
+        e.preventDefault();
+        const imgPa = botao.querySelector('.pa');
+        if (imgPa) {
+          imgPa.classList.add('animar');
+          setTimeout(() => imgPa.classList.remove('animar'), 600);
+        }
+        const index = botao.getAttribute('data-vaso-index');
+        vasoIndexInput.value = index;
+        modal.style.display = 'flex';
       });
+    });
 
-      function fecharModal() {
-        modal.style.display = 'none';
-      }
-    </script>
+    function fecharModal() {
+      modal.style.display = 'none';
+    }
+  </script>
 
-    <!-- Rodapé -->
-    <%- include('partials/footer'); %>
-  </body>
+  <!-- 🌾 Rodapé -->
+  <%- include('partials/footer'); %>
+</body>
 </html>
