@@ -10,7 +10,7 @@ const girassol = {
   nome: 'Girassol',
   imagem: 'girassol.png',
   descricao: 'Planta radiante que cresce voltada para o sol.',
-  oxigeniopm: 2,
+  oxigeniopm: 1,
   preco: 0 // gratuito
 };
 

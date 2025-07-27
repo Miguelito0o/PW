@@ -1,24 +1,26 @@
-<header class="header" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: linear-gradient(to right, #d0f0c0, #f0fdf4); box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex-wrap: wrap; gap: 1rem;">
+<header class="header" style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #BBDEA8; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex-wrap: wrap; gap: 1rem;">
 
   <!-- 🌻 Logo e nome do jardim -->
-  <div class="logo" style="display: flex; align-items: center;">
-    <span style="font-size: 2rem;">🌻</span>
-    <h1 style="margin-left: 0.5rem; font-size: 1.8rem; color: var(--verde3);">
-    Jardim de <%= jardim.nome %>
-    </h1>
-  </div>
+  <div class="header-esquerda">
+    <div class="logo" style="display: flex; align-items: center;">
+      <span style="font-size: 2rem;"></span>
+      <h1 style="margin-left: 0.5rem; font-size: 1.8rem; color: var(--marrom1);">
+      <%= jardim.nome %>
+      </h1>
+    </div>
 
-  <!-- 🌐 Navegação -->
-  <nav class="nav" style="display: flex; gap: 1rem;">
-    <a href="/" style="text-decoration: none; color: #2f8f2f;">🏡 Início</a>
-    <a href="/plantas" style="text-decoration: none; color: #2f8f2f;">🌿 Plantas</a>
-    <a href="/perfil" style="text-decoration: none; color: #2f8f2f;">👤 Perfil</a>
-    <a href="/sobre" style="text-decoration: none; color: #2f8f2f;">❔ Sobre</a>
-  </nav>
-
+    <!-- 🌐 Navegação -->
+    <nav class="nav" style="display: flex; gap: 1rem;">
+      <a href="/" style="text-decoration: none; color: #3E2623;">Início</a>
+      <a href="/api/loja" style="text-decoration: none; color: #3E2623 ;">Loja</a>
+      <a href="/perfil" style="text-decoration: none; color: #3E2623;">Perfil</a>
+      <a href="/sobre" style="text-decoration: none; color: #3E2623;">Sobre</a>
+    </nav>
+  </div>  
+  
   <!-- 🫁 Contador de Oxigênio -->
   <div class="oxigenio-contador" style="font-size: 1.3rem; color: #2f8f2f; display: flex; align-items: center;">
-    <span style="margin-right: 0.3rem; animation: respirar 2s infinite ease-in-out;">🫁</span>
+    <span style="margin-right: 0.3rem; animation: respirar 2s infinite ease-in-out;"><img src="/images/icones/O2.png" alt="O2"></span>
     <span id="oxigenioValor"><%= oxigenioTotal %></span>
   </div>
 

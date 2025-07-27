@@ -1,19 +1,11 @@
 const mongoose = require('mongoose');
+const vasoSchema = require('./Vaso.js');
+
 
 const gardenSchema = new mongoose.Schema({
   nome: String,
   dono: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  vasos: [
-    {
-      planta: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Planta',
-        default: null
-      },
-      dataPlantio: { type: Date, default: null },
-      estado: { type: String, default: 'vazio' } // ex: 'plantado', 'crescendo'
-    }
-  ]
+  vasos: [vasoSchema]
 });
 
 module.exports = mongoose.model('Garden', gardenSchema);

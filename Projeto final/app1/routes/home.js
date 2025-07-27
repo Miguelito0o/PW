@@ -18,7 +18,7 @@ router.get('/home', authenticateToken, async (req, res) => {
     user.dataUltimaColeta = new Date();
 
     await user.save();
-
+    
     res.render('home', {
       usuarioId: req.user.id,
       jardins: [jardim],
@@ -82,9 +82,5 @@ router.get('/home', authenticateToken, async (req, res) => {
 
   res.json({ oxigenioTotal });
 });
-
-
-
-
 
 module.exports = router;

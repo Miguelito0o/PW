@@ -2,42 +2,32 @@ const express = require('express');
 const router = express.Router();
 const authenticateToken = require('../middleware/authMiddleware');
 const Garden = require('../models/Garden');
-const Planta = require('../models/Planta'); // ✅ importa o modelo de planta
-
-router.get('/', authenticateToken, (req, res) => {
-  res.render('criarJardim', { usuarioId: req.user.id });
-});
+const Planta = require('../models/Planta');
 
 router.post('/', authenticateToken, async (req, res) => {
   const { nome } = req.body;
 
   try {
-    // ✅ Buscar a planta "Girassol" no banco
     const girassol = await Planta.findOne({ nome: 'Girassol' });
 
     if (!girassol) {
       return res.status(404).send('Planta Girassol não encontrada.');
     }
 
-    // 🌻 Primeiro vaso com planta correta
+    // 🪴 Inicializa os 6 vasos
     const vasos = [
       {
-        planta: girassol._id, // ✅ usa o ObjectId correto
+        planta: girassol._id,
         dataPlantio: new Date(),
         estado: 'plantado'
-      }
-    ];
-
-    // 🪴 Preenche os demais vasos vazios
-    while (vasos.length < 6) {
-      vasos.push({
+      },
+      ...new Array(5).fill({
         planta: null,
         dataPlantio: null,
         estado: 'vazio'
-      });
-    }
+      })
+    ];
 
-    // 🌼 Criação do jardim
     const novoJardim = new Garden({
       nome,
       dono: req.user.id,
@@ -45,7 +35,6 @@ router.post('/', authenticateToken, async (req, res) => {
     });
 
     await novoJardim.save();
-
     res.redirect('/api/home');
   } catch (err) {
     console.error('Erro ao criar jardim:', err.message);
