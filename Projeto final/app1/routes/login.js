@@ -3,7 +3,9 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const Garden = require('../models/Garden'); // ← Importa o modelo de jardim
+const Garden = require('../models/Garden');
+const Planta = require('../models/Planta');
+ // ← Importa o modelo de jardim
 
 
 const SECRET = process.env.JWT_SECRET || 'seuSegredoSuperSeguro';
@@ -41,7 +43,36 @@ router.post('/', async (req, res) => {
     const jardins = await Garden.find({ dono: user._id });
 
     if (jardins.length === 0) {
-      res.redirect('/criarJardim');
+      const girassol = await Planta.findOne({ nome: 'Girassol' });
+
+      if (!girassol) {
+      return res.status(404).send('Planta Girassol não encontrada.');
+      }
+
+      // 🪴 Criação dos vasos iniciais
+      const vasos = [
+        {
+          planta: girassol._id,
+          dataPlantio: new Date(),
+          estado: 'plantado'
+        },
+        ...new Array(5).fill({
+          planta: null,
+          dataPlantio: null,
+          estado: 'vazio'
+        })
+      ];
+
+      // 🌼 Cria novo jardim para o usuário
+      const novoJardim = new Garden({
+        nome: 'Meu Primeiro Jardim', // Ou um nome vindo do req.body se preferir
+        dono: user._id,
+        vasos
+      });
+
+      await novoJardim.save();
+      res.redirect('/api/home'); // ✅ Redireciona para a página principal
+
     } else {
       res.redirect('/api/home');
     } 

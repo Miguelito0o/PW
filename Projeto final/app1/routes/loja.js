@@ -4,6 +4,7 @@ const authenticateToken = require('../middleware/authMiddleware');
 const Planta = require('../models/Planta');
 const User = require('../models/User');
 
+
 // 🌿 GET: Exibe a loja com todas as plantas
 router.get('/loja', authenticateToken, async (req, res) => {
   try {
@@ -12,7 +13,7 @@ router.get('/loja', authenticateToken, async (req, res) => {
 
     res.render('loja', {
       plantas,
-      oxigenioTotal: user.oxigenioTotal
+      oxigenioTotal: user.oxigenioTotal,
     });
   } catch (err) {
     console.error('Erro ao carregar loja:', err.message);

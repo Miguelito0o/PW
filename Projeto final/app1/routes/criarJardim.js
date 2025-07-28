@@ -4,7 +4,7 @@ const authenticateToken = require('../middleware/authMiddleware');
 const Garden = require('../models/Garden');
 const Planta = require('../models/Planta');
 
-router.post('/', authenticateToken, async (req, res) => {
+router.post('/criarJardim', authenticateToken, async (req, res) => {
   const { nome } = req.body;
 
   try {

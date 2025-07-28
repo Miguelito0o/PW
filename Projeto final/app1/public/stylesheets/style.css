@@ -504,10 +504,17 @@ select {
   z-index: 0;
 }
 
+.icon-flutuante {
+  position: absolute;
+  width: 50px;
+  opacity: 0.6;
+  animation: flutuar 6s infinite ease-in-out;
+}
+
 .icon-deco {
   position: absolute;
-  width: 40px;
-  opacity: 0.7;
+  width: 50px;
+  opacity: 0.6;
 }
 
 .sol {
@@ -551,5 +558,87 @@ select {
   left: 65%;
   max-width: 120px;
   width: 100%; 
+}
+
+@keyframes flutuar {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-15px) rotate(10deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Loja */
+
+.pagina-loja {
+  background: linear-gradient(to bottom, #f0fff4, #d0f0d0);
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  padding-bottom: 4rem;
+}
+
+.header-loja {
+  text-align: center;
+  padding: 2rem;
+  background-color: #eaffea;
+  border-bottom: 2px solid #c0eac0;
+}
+
+.catalogo-loja {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 1rem;
+}
+
+.card-planta {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(34, 139, 34, 0.2);
+  width: 220px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-planta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(34, 139, 34, 0.3);
+}
+
+.card-planta img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.card-planta h3 {
+  margin: 0.5rem 0;
+  color: #2f8f2f;
+}
+
+.descricao-planta {
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.dados-planta {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.3rem;
+}
+
+.card-planta button {
+  background-color: #2f8f2f;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.card-planta button:hover {
+  background-color: #1f5f1f;
 }
 
