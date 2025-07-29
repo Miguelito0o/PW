@@ -87,6 +87,45 @@ router.get('/home', authenticateToken, async (req, res) => {
 
 
   res.json({ oxigenioTotal });
+
+  router.post('/retirar-planta', async (req, res) => {
+  const { vasoIndex } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const jardim = await Garden.findOne({ dono: userId });
+    const user = await User.findById(userId);
+
+    const vaso = jardim.vasos[vasoIndex];
+
+    if (!vaso || !vaso.planta) {
+      return res.status(400).json({ message: 'Vaso vazio ou inválido.' });
+    }
+
+    const plantaId = vaso.planta.toString();
+
+    // Retira planta do vaso
+    vaso.planta = null;
+    vaso.dataPlantio = null;
+    vaso.estado = 'vazio';
+
+    // Atualiza o inventário
+    const plantaExistente = user.inventario.find(p => p.planta.toString() === plantaId);
+    if (plantaExistente) {
+      plantaExistente.quantidade += 1;
+    } else {
+      user.inventario.push({ planta: plantaId, quantidade: 1 });
+    }
+
+    await jardim.save();
+    await user.save();
+
+    res.json({ message: 'Planta retirada com sucesso!' });
+  } catch (err) {
+    res.status(500).json({ message: 'Erro ao retirar planta', error: err.message });
+  }
+});
+
 });
 
 module.exports = router;
