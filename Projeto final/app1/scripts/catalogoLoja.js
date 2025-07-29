@@ -12,22 +12,25 @@ const novasPlantas = [
     nome: 'cacto',
     imagem: 'cacto.png',
     descricao: 'Sobrevive em calor intenso e gera oxigênio rápido.',
-    oxigeniopm: 3,
-    preco: 90
+    oxigeniopm: 1.2,
+    preco: 350,
+    estacaoPermitida: ['todas']
   },
   {
-    nome: 'Bonsai Zen',
-    imagem: 'bonsai.png',
-    descricao: 'Planta meditativa de crescimento lento, mas poderosa.',
-    oxigeniopm: 7,
-    preco: 320
-  },
-  {
-    nome: 'Samambaia Alegre',
+    nome: 'samambaia',
     imagem: 'samambaia.png',
-    descricao: 'Verde vibrante e alegre, ideal para todos os vasos.',
-    oxigeniopm: 1,
-    preco: 65
+    descricao: '',
+    oxigeniopm: 2,
+    preco: 320,
+    estacaoPermitida: ['todas']
+  },
+  {
+    nome: 'Rosa',
+    imagem: 'rosa.png',
+    descricao: '',
+    oxigeniopm: 0.5,
+    preco: 65,
+    estacaoPermitida: ['verao']
   }
 ];
 

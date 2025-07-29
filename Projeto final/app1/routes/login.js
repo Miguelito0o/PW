@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Garden = require('../models/Garden');
 const Planta = require('../models/Planta');
- // ← Importa o modelo de jardim
 
 
 const SECRET = process.env.JWT_SECRET || 'seuSegredoSuperSeguro';

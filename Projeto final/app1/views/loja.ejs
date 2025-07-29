@@ -7,11 +7,7 @@
 </head>
 <body class="pagina-loja">
 
-
-  <header class="header-loja">
-    <h1>🌼 Loja de Plantas</h1>
-    <p>Você já possui um Girassol no seu jardim 🌻</p>
-  </header>
+  <%- include('partials/header', { jardim: jardim, oxigenioTotal: oxigenioTotal }) %>
 
   <section class="catalogo-loja">
     <% plantas.forEach(planta => {

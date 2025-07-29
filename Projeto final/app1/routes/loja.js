@@ -3,6 +3,9 @@ const router = express.Router();
 const authenticateToken = require('../middleware/authMiddleware');
 const Planta = require('../models/Planta');
 const User = require('../models/User');
+const Garden = require('../models/Garden')
+
+const { obterEstacaoAtual } = require('../scripts/sazonalidade.js');
 
 
 // 🌿 GET: Exibe a loja com todas as plantas
@@ -10,8 +13,10 @@ router.get('/loja', authenticateToken, async (req, res) => {
   try {
     const plantas = await Planta.find({});
     const user = await User.findById(req.user.id);
+    const jardim = await Garden.findOne({ dono: req.user.id }).populate('vasos.planta');
 
     res.render('loja', {
+      jardim,
       plantas,
       oxigenioTotal: user.oxigenioTotal,
     });

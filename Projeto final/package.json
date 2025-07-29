@@ -1,0 +1,26 @@
+{
+  "name": "pw_2025.1",
+  "version": "1.0.0",
+  "description": "Repositório destinado à matéria de Programação Web do curso de Informática integrado ao ensino médio (5º período)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Miguelito0o/PW_2025.1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Miguelito0o/PW_2025.1/issues"
+  },
+  "homepage": "https://github.com/Miguelito0o/PW_2025.1#readme",
+  "dependencies": {
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "express-generator": "^4.16.1",
+    "mongoose": "^8.16.1"
+  }
+}

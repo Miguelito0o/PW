@@ -569,7 +569,6 @@ select {
 /* Loja */
 
 .pagina-loja {
-  background: linear-gradient(to bottom, #f0fff4, #d0f0d0);
   font-family: 'Segoe UI', sans-serif;
   color: #333;
   padding-bottom: 4rem;
@@ -589,6 +588,7 @@ select {
   justify-content: center;
   margin-top: 2rem;
   padding: 1rem;
+  padding-top: 10%;
 }
 
 .card-planta {

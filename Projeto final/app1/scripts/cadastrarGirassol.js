@@ -11,7 +11,8 @@ const girassol = {
   imagem: 'girassol.png',
   descricao: 'Planta radiante que cresce voltada para o sol.',
   oxigeniopm: 1,
-  preco: 0 // gratuito
+  preco: 0,
+  estacoesPermitidas: ['todas']
 };
 
 Planta.findOne({ nome: 'Girassol' }).then((existe) => {

@@ -5,6 +5,8 @@ const User = require('../models/User');
 const Garden = require('../models/Garden');
 const Planta = require('../models/Planta');
 
+const { podePlantar } = require('../scripts/sazonalidade')
+
 const { calcularOxigenioPassivo } = require('../scripts/calcularOxigenioPass');
 
 router.get('/home', authenticateToken, async (req, res) => {
@@ -49,7 +51,11 @@ router.get('/home', authenticateToken, async (req, res) => {
       return res.status(400).send('Planta não disponível no inventário.');
     }
 
-    const plantaSelecionada = await Planta.findOne({ nome: plantaNome }); // ✅ busca planta
+    const plantaSelecionada = await Planta.findOne({ nome: plantaNome });
+
+    if (!podePlantar(plantaSelecionada, jardim.estacaoAtual)) {
+    return res.status(400).send('Esta planta não pode ser usada nesta estação.');
+}
 
     // 🌱 Plantar corretamente
     jardim.vasos[vasoIndex].planta = plantaSelecionada._id;
