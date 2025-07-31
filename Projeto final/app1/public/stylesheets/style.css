@@ -371,8 +371,6 @@ a {
   box-sizing: border-box;
 }
 
-
-
 .jardim {
   display: flex;
   flex-wrap: wrap;
@@ -389,10 +387,6 @@ a {
   flex: 0 1 180px;
   max-width: 180px;
   width: 100%;
-}
-
-.pa-button:hover {
-  transform: scale(1.05);
 }
 
 .vaso img {
@@ -420,6 +414,39 @@ select {
   font-size: 0.9rem;
 }
 
+.garden-button:hover {
+  background-color: var(--verde4);
+}
+
+/* butões */ 
+
+.tesoura {
+  height: auto;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.tesoura-button {
+  background-color: var(--verde3);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tesoura-button img.tesoura {
+  width: 40px;
+  height: auto;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.tesoura-button:hover {
+  transform: scale(1.05);
+}
+
 .pa-button {
   background-color: var(--verde3);
   color: white;
@@ -428,11 +455,10 @@ select {
   border-radius: 100%;
   cursor: pointer;
   transition: background-color 0.3s ease;
-
 }
 
-.garden-button:hover {
-  background-color: var(--verde4);
+.pa-button:hover {
+  transform: scale(1.05);
 }
 
 .pa {

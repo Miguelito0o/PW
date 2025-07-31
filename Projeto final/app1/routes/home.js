@@ -88,7 +88,7 @@ router.get('/home', authenticateToken, async (req, res) => {
 
   res.json({ oxigenioTotal });
 
-  router.post('/retirar-planta', async (req, res) => {
+  router.post('/retirar-planta', authenticateToken, async (req, res) => {
   const { vasoIndex } = req.body;
   const userId = req.user.id;
 
@@ -120,7 +120,7 @@ router.get('/home', authenticateToken, async (req, res) => {
     await jardim.save();
     await user.save();
 
-    res.json({ message: 'Planta retirada com sucesso!' });
+    res.redirect('/api/home');
   } catch (err) {
     res.status(500).json({ message: 'Erro ao retirar planta', error: err.message });
   }

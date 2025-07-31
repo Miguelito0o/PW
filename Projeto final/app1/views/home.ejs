@@ -26,13 +26,19 @@
   <main class="jardim-container">
     <% jardins[0].vasos.slice(0, 6).forEach((vaso, index) => { %>
       <div class="vaso">
-      <% if (vaso.planta) { %>
+      <% if (vaso.planta) { %>   
         <div class="vaso-com-planta">
           <img src="/images/icones/vaso.png" class="vaso-base" alt="Vaso">
           <img src="/images/plantas/<%= vaso.planta.imagem %>" class="planta-imagem" alt="<%= vaso.planta.nome %>">
         </div>
         <h3><%= vaso.planta.nome %></h3>
         <p><%= new Date(vaso.dataPlantio).toLocaleDateString() %></p>
+        <form action="/api/retirar-planta" method="POST">
+          <input type="hidden" name="vasoIndex" value="<%= index %>">
+          <button type="submit" class="tesoura-button">
+            <img src="/images/icones/tesoura.png" class="tesoura" alt="Retirar planta">
+          </button>
+        </form>
       <% } else { %>
         <form>
           <button type="button" class="pa-button" data-vaso-index="<%= index %>">
